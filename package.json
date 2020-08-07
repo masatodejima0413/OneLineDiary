@@ -7,13 +7,15 @@
   "repository": "https://github.com/iaincollins/nextjs-starter.git",
   "main": "index.js",
   "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
     "firebase": "^7.15.3",
     "lodash": "^4.17.15",
     "next": "9.4.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "@emotion/core": "^10.0.28",
-    "@emotion/styled": "^10.0.27"
+    "styled-components": "^5.1.1",
+    "styled-icons": "^10.15.0"
   },
   "devDependencies": {
     "@types/node": "^14.0.13",
