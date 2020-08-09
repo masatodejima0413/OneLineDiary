@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import App from "../components/App";
 import Login from "../components/Login";
+import Head from "next/head";
 
 const Index = () => {
   const isLoggedIn: boolean = true;
