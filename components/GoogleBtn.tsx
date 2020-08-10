@@ -5,10 +5,8 @@ import { GoogleLogin, GoogleLogout } from "react-google-login";
 const CLIENT_ID =
   "1062013144652-an0qd6bvkksav66ksoeb73v59mi1877m.apps.googleusercontent.com";
 
-const GoogleBtn = () => {
-  const [isLogined, setIsLogined] = useState<boolean>(false);
-  const [accessToken, setAccessToken] = useState<string>("");
-
+const READONLY_SCOPE = "https://www.googleapis.com/auth/photoslibrary.readonly";
+const GoogleBtn = ({ isLogined, setIsLogined, setAccessToken }) => {
   const login = (response) => {
     if (response.accessToken) {
       setIsLogined(true);
@@ -45,14 +43,9 @@ const GoogleBtn = () => {
           onFailure={handleLoginFailure}
           cookiePolicy={"single_host_origin"}
           responseType="code,token"
+          scope={READONLY_SCOPE}
         />
       )}
-      {accessToken ? (
-        <h5>
-          Your Access Token: <br />
-          <br /> {accessToken}
-        </h5>
-      ) : null}
     </div>
   );
 };

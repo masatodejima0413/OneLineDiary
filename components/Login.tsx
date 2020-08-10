@@ -1,9 +1,10 @@
 import React from "react";
+import GoogleBtn from "./GoogleBtn";
 
-const Login = () => {
+const Login = ({ setIsLogined, setAccessToken }) => {
   return (
     <>
-      <div>this is login page!!</div>
+      <div>Login with Google</div>
     </>
   );
 };

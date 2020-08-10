@@ -2,15 +2,14 @@ import React from "react";
 import Header from "./Header";
 import Post from "./Post";
 import TimeLine from "./TimeLine";
-import Employee from "./DummyApi";
-import GoogleBtn from "./GoogleBtn";
+import { access } from "fs";
 
-const App = () => {
+const App = ({ accessToken }) => {
   return (
     <>
-      <GoogleBtn />
       <Header />
       <Post />
+      <div>accessToken is {accessToken}</div>
       <TimeLine />
     </>
   );

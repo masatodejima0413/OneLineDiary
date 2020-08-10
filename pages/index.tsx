@@ -1,14 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import App from "../components/App";
 import Login from "../components/Login";
-import Head from "next/head";
+import GoogleBtn from "../components/GoogleBtn";
 
 const Index = () => {
-  const isLoggedIn: boolean = true;
+  const [isLogined, setIsLogined] = useState<boolean>(false);
+  const [accessToken, setAccessToken] = useState<string>("");
 
   return (
     <>
-      {isLoggedIn ? <App /> : <Login />}
+      <GoogleBtn
+        isLogined={isLogined}
+        setIsLogined={setIsLogined}
+        setAccessToken={setAccessToken}
+      />
+      {isLogined ? (
+        <App accessToken={accessToken} />
+      ) : (
+        <Login setIsLogined={setIsLogined} setAccessToken={setAccessToken} />
+      )}
       <style jsx global>{`
         html,
         body {
