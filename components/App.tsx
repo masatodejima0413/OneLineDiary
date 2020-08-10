@@ -2,7 +2,6 @@ import React from "react";
 import Header from "./Header";
 import Post from "./Post";
 import TimeLine from "./TimeLine";
-import { access } from "fs";
 
 const App = ({ accessToken }) => {
   return (

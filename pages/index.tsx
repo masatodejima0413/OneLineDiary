@@ -9,16 +9,16 @@ const Index = () => {
 
   return (
     <>
-      <GoogleBtn
-        isLogined={isLogined}
-        setIsLogined={setIsLogined}
-        setAccessToken={setAccessToken}
-      />
       {isLogined ? (
         <App accessToken={accessToken} />
       ) : (
         <Login setIsLogined={setIsLogined} setAccessToken={setAccessToken} />
       )}
+      <GoogleBtn
+        isLogined={isLogined}
+        setIsLogined={setIsLogined}
+        setAccessToken={setAccessToken}
+      />
       <style jsx global>{`
         html,
         body {

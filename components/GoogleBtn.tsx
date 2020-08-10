@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-
+import React from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
+import styled from "@emotion/styled";
 
 const CLIENT_ID =
   "1062013144652-an0qd6bvkksav66ksoeb73v59mi1877m.apps.googleusercontent.com";
 
 const READONLY_SCOPE = "https://www.googleapis.com/auth/photoslibrary.readonly";
+
 const GoogleBtn = ({ isLogined, setIsLogined, setAccessToken }) => {
   const login = (response) => {
     if (response.accessToken) {
@@ -27,7 +28,7 @@ const GoogleBtn = ({ isLogined, setIsLogined, setAccessToken }) => {
   };
 
   return (
-    <div>
+    <StyledContainer>
       {isLogined ? (
         <GoogleLogout
           clientId={CLIENT_ID}
@@ -46,8 +47,14 @@ const GoogleBtn = ({ isLogined, setIsLogined, setAccessToken }) => {
           scope={READONLY_SCOPE}
         />
       )}
-    </div>
+    </StyledContainer>
   );
 };
 
 export default GoogleBtn;
+
+const StyledContainer = styled("div")`
+  display: flex;
+  justify-content: center;
+  margin: 70px;
+`;
