@@ -1,21 +1,44 @@
 import React, { useState, useEffect } from "react";
 
-const endpoint = "https://photoslibrary.googleapis.com/v1/albums";
-// const endpoint = "http://dummy.restapiexample.com/api/v1/employees";
+const endpoint = "https://photoslibrary.googleapis.com/v1/mediaItems";
+// const endpoint = "https://photoslibrary.googleapis.com/v1/albums";
 
 const ConsoleRest = ({ accessToken }) => {
-  const [data, setData] = useState("");
+  const [exPhotoUrl, setExPhotoUrl] = useState("");
 
-  useEffect(async () => {
-    const res = await fetch(`${endpoint}?access_token=${accessToken}`);
-    const json = await res.json();
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(`${endpoint}`, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+          // pageSize: "100",
+        },
+      });
+      const json = await res.json();
+      console.log(json.mediaItems[0].baseUrl);
+      setExPhotoUrl(`${json.mediaItems[0].baseUrl}=w256-h256`);
+    };
+    fetchData();
+  }, []);
 
-    //   await setData(json);
-    console.log(accessToken);
-    console.log(json);
-  }, [accessToken]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const res = await fetch(`${endpoint}?access_token=${accessToken}`);
+  //     const json = await res.json();
+  //     console.log(json);
+  //   };
+  //   fetchData();
+  // }, []);
 
-  return <div>console!!</div>;
+  return (
+    <div>
+      console!!
+      <img src={exPhotoUrl} alt="textImage" />
+    </div>
+  );
 };
 
 export default ConsoleRest;

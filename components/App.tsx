@@ -1,14 +1,13 @@
 import React from "react";
 import Header from "./Header";
-import Post from "./Post";
+import Post from "./Post/Post";
 import TimeLine from "./TimeLine";
 
 const App = ({ accessToken }) => {
   return (
     <>
       <Header />
-      <Post />
-      <div>accessToken is {accessToken}</div>
+      <Post accessToken={accessToken} />
       <TimeLine />
     </>
   );

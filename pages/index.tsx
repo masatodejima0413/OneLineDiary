@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import App from "../components/App";
 import Login from "../components/Login";
 import GoogleBtn from "../components/GoogleBtn";
@@ -9,10 +9,10 @@ const Index = () => {
 
   return (
     <>
-      {isLogined ? (
+      {isLogined && accessToken.length > 0 ? (
         <App accessToken={accessToken} />
       ) : (
-        <Login setIsLogined={setIsLogined} setAccessToken={setAccessToken} />
+        <Login />
       )}
       <GoogleBtn
         isLogined={isLogined}
