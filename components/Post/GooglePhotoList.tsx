@@ -25,6 +25,7 @@ const GooglePhotoList = ({ accessToken }) => {
       },
     });
     const json = await res.json();
+    console.log(json);
 
     json.mediaItems.map((mediaItem) => {
       setPhotoList((prev) => [
