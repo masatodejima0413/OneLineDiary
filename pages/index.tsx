@@ -6,6 +6,8 @@ import GoogleBtn from "../components/GoogleBtn";
 const Index = () => {
   const [isLogined, setIsLogined] = useState<boolean>(false);
   const [accessToken, setAccessToken] = useState<string>("");
+  const [googleId, setGoogleId] = useState<string>("");
+  const [userName, setUserName] = useState<string>("");
 
   return (
     <>
@@ -18,6 +20,8 @@ const Index = () => {
         isLogined={isLogined}
         setIsLogined={setIsLogined}
         setAccessToken={setAccessToken}
+        setUserName={setUserName}
+        setGoogleId={setGoogleId}
       />
       <style jsx global>{`
         html,
