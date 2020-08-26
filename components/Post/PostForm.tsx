@@ -4,9 +4,25 @@ import styled from "@emotion/styled";
 import { Cross } from "@styled-icons/entypo/Cross";
 import { ArrowUpCircleFill } from "@styled-icons/bootstrap/ArrowUpCircleFill";
 import { turquoise, blue } from "../../constants/colors";
+import { db } from "../../libs/firebase";
 
-const PostForm = ({ accessToken, setIsFormOpen }) => {
+const PostForm = ({ accessToken, setIsFormOpen, googleId }) => {
   const [isGooglePhotoListOpen, setIsGooglePhotoListOpen] = useState(false);
+  const [comment, setComment] = useState<string>("");
+  const [photoId, setPhotoId] = useState<string>("");
+
+  const Post = () => {
+    const postsRef = db.collection("users").doc(googleId).collection("posts");
+    postsRef
+      .doc(photoId)
+      .set({ photoId: photoId, comment: comment })
+      .then(function (docRef) {
+        console.log("Document written with ID ");
+      })
+      .catch(function (error) {
+        console.error("Error adding document: ", error);
+      });
+  };
 
   return (
     <StyledModal onClick={() => setIsFormOpen(false)}>
@@ -14,19 +30,19 @@ const PostForm = ({ accessToken, setIsFormOpen }) => {
       <StyledContainer onClick={(e) => e.stopPropagation()}>
         <StyledFormPartContainer>
           <label>comment:</label>
-          <input type="text" />
-        </StyledFormPartContainer>
-        <StyledFormPartContainer>
-          <label>location:</label>
-          <input type="text" />
+          <input
+            type="text"
+            onChange={(e) => setComment(e.target.value)}
+            value={comment}
+          />
         </StyledFormPartContainer>
 
         {isGooglePhotoListOpen ? (
-          <GooglePhotoList accessToken={accessToken} />
+          <GooglePhotoList accessToken={accessToken} setPhotoId={setPhotoId} />
         ) : (
           <div onClick={() => setIsGooglePhotoListOpen(true)}>select photo</div>
         )}
-        <StyledArrowUpCircleFill />
+        <StyledArrowUpCircleFill onClick={Post} />
       </StyledContainer>
     </StyledModal>
   );

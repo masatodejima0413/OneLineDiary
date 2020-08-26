@@ -4,7 +4,7 @@ import Post from "./Post/Post";
 import TimeLine from "./TimeLine";
 import { db } from "../libs/firebase";
 
-const App = ({ accessToken }) => {
+const App = ({ accessToken, googleId, userName }) => {
   const getData = () => {
     const userRef = db.collection("users");
     userRef.get().then((snapshot) => {
@@ -14,14 +14,14 @@ const App = ({ accessToken }) => {
     });
   };
 
-  useEffect(() => {
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
   return (
     <>
       <Header />
-      <Post accessToken={accessToken} />
+      <Post accessToken={accessToken} googleId={googleId} />
       <TimeLine />
     </>
   );

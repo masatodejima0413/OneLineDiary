@@ -12,7 +12,11 @@ const Index = () => {
   return (
     <>
       {isLogined && accessToken.length > 0 ? (
-        <App accessToken={accessToken} />
+        <App
+          accessToken={accessToken}
+          googleId={googleId}
+          userName={userName}
+        />
       ) : (
         <Login />
       )}

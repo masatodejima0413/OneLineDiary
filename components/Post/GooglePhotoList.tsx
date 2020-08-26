@@ -9,7 +9,7 @@ interface IPhotoInfo {
   baseUrl: string;
 }
 
-const GooglePhotoList = ({ accessToken }) => {
+const GooglePhotoList = ({ accessToken, setPhotoId }) => {
   const [photoList, setPhotoList] = useState<IPhotoInfo[]>([]);
 
   useEffect(() => {
@@ -41,7 +41,13 @@ const GooglePhotoList = ({ accessToken }) => {
   return (
     <StyledContainer>
       {photoList.map((photo) => {
-        return <img src={`${photo.baseUrl}=w256-h256-c`} alt="" />;
+        return (
+          <img
+            src={`${photo.baseUrl}=w256-h256-c`}
+            alt=""
+            onClick={() => setPhotoId(photo.id)}
+          />
+        );
       })}
     </StyledContainer>
   );
